@@ -46,4 +46,14 @@ npm run dist:win
 
 - 安装版：`DeskPet Setup *.exe`（NSIS）
 - 便携版：`DeskPet *.exe`（Portable）
+
+
+## 启动后看不到界面？
+
+- 如果你直接运行 `electron .`，且本地没有启动 Vite，应用会自动回退加载 `dist/index.html`。
+- 如果看得到面板但看不到宠物，说明模型文件缺失。请确认 `public/live2d/fruits/` 下存在：
+  - `chengliuxiang.model3.json`
+  - `boluochuixue.model3.json`
+  - `luxiaoguo.model3.json`
+- 应用内会显示“模型加载失败”提示，便于定位缺失模型。
 输出目录：`release/`，可直接获得 Windows 安装包（`.exe`）。
