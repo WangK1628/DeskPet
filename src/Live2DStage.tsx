@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as PIXI from 'pixi.js';
 import { Live2DModel } from 'pixi-live2d-display';
 
@@ -6,6 +6,7 @@ type Props = { modelPath: string };
 
 export function Live2DStage({ modelPath }: Props) {
   const hostRef = useRef<HTMLDivElement | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   useEffect(() => {
     let app: PIXI.Application | undefined;
@@ -25,6 +26,7 @@ export function Live2DStage({ modelPath }: Props) {
       hostRef.current.appendChild(app.view as HTMLCanvasElement);
 
       try {
+        setLoadError(null);
         const model = await Live2DModel.from(modelPath);
         if (!mounted || !app) return;
 
@@ -37,6 +39,7 @@ export function Live2DStage({ modelPath }: Props) {
         app.stage.addChild(model);
       } catch (error) {
         console.error('Live2D 模型加载失败:', error);
+        setLoadError(`模型加载失败：${modelPath}`);
       }
     };
 
@@ -48,5 +51,10 @@ export function Live2DStage({ modelPath }: Props) {
     };
   }, [modelPath]);
 
-  return <div className="live2d" ref={hostRef} />;
+  return (
+    <div className="live2d-wrap">
+      <div className="live2d" ref={hostRef} />
+      {loadError && <p className="live2d-error">{loadError}</p>}
+    </div>
+  );
 }

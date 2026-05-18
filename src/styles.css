@@ -44,3 +44,20 @@ button {
   width: 420px;
   height: 420px;
 }
+
+
+.live2d-wrap {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.live2d-error {
+  margin: 0;
+  font-size: 12px;
+  color: #ffd0d0;
+  background: rgba(90, 20, 20, 0.55);
+  border: 1px solid rgba(255, 170, 170, 0.5);
+  border-radius: 8px;
+  padding: 6px 10px;
+}
