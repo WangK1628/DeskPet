@@ -33,3 +33,13 @@ npm run dev
 ```bash
 npm run build
 ```
+
+
+## 打包 EXE（Windows）
+
+```bash
+npm install
+npm run dist:win
+```
+
+输出目录：`release/`，可直接获得 Windows 安装包（`.exe`）。
