@@ -21,8 +21,10 @@ const createWindow = async () => {
     }
   });
 
-  if (process.env.VITE_DEV_SERVER_URL) {
-    await mainWindow.loadURL(process.env.VITE_DEV_SERVER_URL);
+  const devUrl = process.env.VITE_DEV_SERVER_URL ?? 'http://localhost:5173';
+
+  if (!app.isPackaged) {
+    await mainWindow.loadURL(devUrl);
   } else {
     await mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
   }
