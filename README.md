@@ -33,3 +33,16 @@ npm run dev
 ```bash
 npm run build
 ```
+
+
+## 打包 EXE（Windows）
+
+```bash
+npm install
+npm run dist:win
+```
+
+输出目录：`release/`，会同时生成：
+
+- 安装版：`DeskPet Setup *.exe`（NSIS）
+- 便携版：`DeskPet *.exe`（Portable）
