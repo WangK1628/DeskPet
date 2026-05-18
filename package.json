@@ -12,6 +12,11 @@
     "build:main": "tsc -p electron/tsconfig.json",
     "dist:win": "npm run build && electron-builder --win nsis portable",
     "postinstall": "npm run build:main"
+    "dist:win": "npm run build && electron-builder --win nsis",
+    "postinstall": "npm run build:main"
+    "build": "vite build && tsc -p electron/tsconfig.json",
+    "typecheck": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit",
+    "predev": "tsc -p electron/tsconfig.json"
   },
   "dependencies": {
     "pixi.js": "^7.4.2",

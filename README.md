@@ -46,3 +46,4 @@ npm run dist:win
 
 - 安装版：`DeskPet Setup *.exe`（NSIS）
 - 便携版：`DeskPet *.exe`（Portable）
+输出目录：`release/`，可直接获得 Windows 安装包（`.exe`）。
