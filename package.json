@@ -5,9 +5,13 @@
   "description": "Electron + React + TypeScript Live2D desktop pet themed by fruit heroes",
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
-    "build": "vite build && tsc -p electron/tsconfig.json",
-    "typecheck": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit"
+    "dev": "concurrently \"vite\" \"wait-on tcp:5173 dist-electron/main.js && electron .\"",
+    "build": "vite build && npm run build:main",
+    "typecheck": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit",
+    "predev": "npm run build:main",
+    "build:main": "tsc -p electron/tsconfig.json",
+    "dist:win": "npm run build && electron-builder --win nsis",
+    "postinstall": "npm run build:main"
   },
   "dependencies": {
     "pixi.js": "^7.4.2",
@@ -24,6 +28,32 @@
     "electron": "^31.7.7",
     "typescript": "^5.8.3",
     "vite": "^5.4.19",
-    "wait-on": "^8.0.3"
+    "wait-on": "^8.0.3",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.guoba.deskpet",
+    "productName": "DeskPet",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**",
+      "dist-electron/**",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "dist-electron/main.js"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    }
   }
 }
