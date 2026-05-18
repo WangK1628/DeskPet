@@ -35,6 +35,8 @@ const createWindow = async () => {
     } catch {
       await mainWindow.loadFile(distHtml);
     }
+  if (!app.isPackaged) {
+    await mainWindow.loadURL(devUrl);
   } else {
     await mainWindow.loadFile(distHtml);
   }

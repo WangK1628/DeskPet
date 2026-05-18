@@ -56,3 +56,4 @@ npm run dist:win
   - `boluochuixue.model3.json`
   - `luxiaoguo.model3.json`
 - 应用内会显示“模型加载失败”提示，便于定位缺失模型。
+输出目录：`release/`，可直接获得 Windows 安装包（`.exe`）。
