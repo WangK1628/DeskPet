@@ -5,9 +5,10 @@
   "description": "Electron + React + TypeScript Live2D desktop pet themed by fruit heroes",
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "concurrently \"vite\" \"wait-on tcp:5173 && electron .\"",
+    "dev": "concurrently \"vite\" \"wait-on tcp:5173 dist-electron/main.js && electron .\"",
     "build": "vite build && tsc -p electron/tsconfig.json",
-    "typecheck": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit"
+    "typecheck": "tsc --noEmit && tsc -p electron/tsconfig.json --noEmit",
+    "predev": "tsc -p electron/tsconfig.json"
   },
   "dependencies": {
     "pixi.js": "^7.4.2",
